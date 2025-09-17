@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marksheet Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Student Marksheet Generator</h1>
+            <p>Create professional academic certificates and marksheets</p>
+        </header>
+
+        <div class="main-content">
+            <div class="form-section">
+                <form id="marksheetForm" class="marksheet-form">
+                    <!-- Student Information Section -->
+                    <section class="form-section-card">
+                        <h3>Student Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="studentName">Student Name *</label>
+                                <input type="text" id="studentName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="rollNumber">Roll Number *</label>
+                                <input type="text" id="rollNumber" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="class">Class *</label>
+                                <input type="text" id="class" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="section">Section</label>
+                                <input type="text" id="section" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="academicYear">Academic Year *</label>
+                                <input type="text" id="academicYear" class="form-control" placeholder="2024-25" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="dateOfBirth">Date of Birth</label>
+                                <input type="date" id="dateOfBirth" class="form-control">
+                            </div>
+                        </div>
+                        
+                        <!-- Photo Upload -->
+                        <div class="form-group">
+                            <label class="form-label">Student Photo</label>
+                            <div class="photo-upload-area" id="photoUploadArea">
+                                <div class="upload-placeholder">
+                                    <span class="upload-icon">📷</span>
+                                    <p>Click to upload or drag and drop</p>
+                                    <small>JPG, PNG, GIF up to 5MB</small>
+                                </div>
+                                <input type="file" id="studentPhoto" accept="image/*" hidden>
+                                <img id="photoPreview" class="photo-preview hidden" alt="Student Photo">
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Subjects and Marks Section -->
+                    <section class="form-section-card">
+                        <div class="section-header">
+                            <h3>Subjects and Marks</h3>
+                            <button type="button" class="btn btn--primary btn--sm" id="addSubjectBtn">+ Add Subject</button>
+                        </div>
+                        <div id="subjectsContainer">
+                            <!-- Dynamic subjects will be added here -->
+                        </div>
+                        <div class="summary-section">
+                            <div class="summary-item">
+                                <span>Total Marks:</span>
+                                <span id="totalMarks">0/0</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Percentage:</span>
+                                <span id="totalPercentage">0%</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Overall Grade:</span>
+                                <span id="overallGrade">-</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- School Details Section -->
+                    <section class="form-section-card">
+                        <h3>School Details</h3>
+                        <div class="form-group">
+                            <label class="form-label" for="schoolName">School Name *</label>
+                            <input type="text" id="schoolName" class="form-control" value="ABC Public School" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="schoolAddress">School Address</label>
+                            <textarea id="schoolAddress" class="form-control" rows="3">123 Education Street, City - 123456</textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="principalName">Principal Name</label>
+                                <input type="text" id="principalName" class="form-control" value="Dr. John Smith">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="issueDate">Date of Issue *</label>
+                                <input type="date" id="issueDate" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <!-- Signature Upload -->
+                        <div class="form-group">
+                            <label class="form-label">Principal Signature</label>
+                            <div class="signature-upload-area" id="signatureUploadArea">
+                                <div class="upload-placeholder">
+                                    <span class="upload-icon">✒️</span>
+                                    <p>Click to upload signature</p>
+                                    <small>PNG recommended for transparency</small>
+                                </div>
+                                <input type="file" id="principalSignature" accept="image/*" hidden>
+                                <img id="signaturePreview" class="signature-preview hidden" alt="Principal Signature">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="remarks">Remarks</label>
+                            <textarea id="remarks" class="form-control" rows="2" placeholder="Any additional comments or remarks"></textarea>
+                        </div>
+                    </section>
+
+                    <!-- Action Buttons -->
+                    <div class="form-actions">
+                        <button type="button" class="btn btn--outline" id="clearFormBtn">Clear Form</button>
+                        <button type="button" class="btn btn--primary" id="printMarksheetBtn">Print Marksheet</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Marksheet Preview -->
+            <div class="preview-section">
+                <div class="marksheet-preview" id="marksheetPreview">
+                    <div class="marksheet-header">
+                        <div class="school-info">
+                            <h2 id="previewSchoolName">ABC Public School</h2>
+                            <p id="previewSchoolAddress">123 Education Street, City - 123456</p>
+                            <h3 class="certificate-title">ACADEMIC MARKSHEET</h3>
+                        </div>
+                        <div class="student-photo-container">
+                            <img id="previewStudentPhoto" class="student-photo" alt="Student Photo">
+                        </div>
+                    </div>
+
+                    <div class="student-details">
+                        <div class="details-row">
+                            <span><strong>Student Name:</strong> <span id="previewStudentName">-</span></span>
+                            <span><strong>Roll Number:</strong> <span id="previewRollNumber">-</span></span>
+                        </div>
+                        <div class="details-row">
+                            <span><strong>Class:</strong> <span id="previewClass">-</span></span>
+                            <span><strong>Section:</strong> <span id="previewSection">-</span></span>
+                        </div>
+                        <div class="details-row">
+                            <span><strong>Academic Year:</strong> <span id="previewAcademicYear">-</span></span>
+                            <span><strong>Date of Birth:</strong> <span id="previewDateOfBirth">-</span></span>
+                        </div>
+                    </div>
+
+                    <div class="marks-table-container">
+                        <table class="marks-table">
+                            <thead>
+                                <tr>
+                                    <th>S.No.</th>
+                                    <th>Subject</th>
+                                    <th>Theory</th>
+                                    <th>Practical</th>
+                                    <th>Total</th>
+                                    <th>Grade</th>
+                                </tr>
+                            </thead>
+                            <tbody id="previewMarksTable">
+                                <!-- Dynamic marks will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="result-summary">
+                        <div class="summary-row">
+                            <span><strong>Total Marks Obtained:</strong> <span id="previewTotalMarks">0/0</span></span>
+                            <span><strong>Percentage:</strong> <span id="previewPercentage">0%</span></span>
+                        </div>
+                        <div class="summary-row">
+                            <span><strong>Overall Grade:</strong> <span id="previewOverallGrade">-</span></span>
+                            <span><strong>Result:</strong> <span id="previewResult" class="result-status">-</span></span>
+                        </div>
+                    </div>
+
+                    <div class="remarks-section">
+                        <p><strong>Remarks:</strong> <span id="previewRemarks">-</span></p>
+                    </div>
+
+                    <div class="marksheet-footer">
+                        <div class="signature-section">
+                            <div class="signature-container">
+                                <img id="previewSignature" class="principal-signature" alt="Principal Signature">
+                                <div class="signature-line"></div>
+                                <p><span id="previewPrincipalName">Principal Name</span></p>
+                                <p><strong>Principal</strong></p>
+                            </div>
+                        </div>
+                        <div class="issue-date">
+                            <p><strong>Date of Issue:</strong> <span id="previewIssueDate">-</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
