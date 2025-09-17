@@ -420,6 +420,14 @@ pre code {
 .btn--primary:hover {
   background: var(--color-primary-hover);
 }
+.name{
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+  text-shadow: 2px;
+  
+}
 
 .btn--primary:active {
   background: var(--color-primary-active);
