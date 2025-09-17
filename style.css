@@ -1267,3 +1267,18 @@ select.form-control {
   color: var(--color-error);
   font-weight: var(--font-weight-bold);
 }
+/* Place this at the end of your style.css file */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  #marksheetPreview, #marksheetPreview * {
+    visibility: visible !important;
+  }
+  #marksheetPreview {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+  }
+}

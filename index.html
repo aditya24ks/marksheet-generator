@@ -136,12 +136,14 @@
                     <!-- Action Buttons -->
                     <div class="form-actions">
                         <button type="button" class="btn btn--outline" id="clearFormBtn">Clear Form</button>
-                        <button type="button" class="btn btn--primary" id="printMarksheetBtn">Print Marksheet</button>
+                        <button type="button" class="btn btn--primary" id="printMarksheetBtn" onclick="printMarksheet()">Print Marksheet</button>
+                       
                     </div>
                 </form>
             </div>
 
             <!-- Marksheet Preview -->
+             <div id="marksheetPreview">
             <div class="preview-section">
                 <div class="marksheet-preview" id="marksheetPreview">
                     <div class="marksheet-header">
@@ -220,6 +222,7 @@
             </div>
         </div>
     </div>
+ </div>
 
     <script src="app.js"></script>
 </body>

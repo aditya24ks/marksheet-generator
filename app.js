@@ -542,6 +542,15 @@ class MarksheetGenerator {
         }
     }
 }
+// printing marksheet file 
+function printMarksheet() {
+  var printContents = document.getElementById("marksheetPreview").innerHTML;
+  var originalContents = document.body.innerHTML;
+  document.body.innerHTML = printContents;
+  window.print();
+  document.body.innerHTML = originalContents;
+}
+
 
 // Initialize the application when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
